@@ -20,6 +20,7 @@ class CreateProductImagesTable extends Migration
 
             // FK
             $table->integer('product_id')->unsigned();
+//            $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->timestamps();
@@ -33,6 +34,10 @@ class CreateProductImagesTable extends Migration
      */
     public function down()
     {
+        Schema::table('product_images', function (Blueprint $table){
+            $table->dropForeign(['product_id']);
+        });
+
         Schema::dropIfExists('product_images');
     }
 }

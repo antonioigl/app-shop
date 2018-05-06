@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
 
             // FK
             $table->integer('category_id')->unsigned()->nullable();
+//            $table->unsignedInteger('category_id')->nullable();
             $table->foreign('category_id')->references('id')->on('categories');
 
             $table->timestamps();
@@ -37,7 +38,6 @@ class CreateProductsTable extends Migration
     {
         Schema::table('products', function (Blueprint $table){
             $table->dropForeign(['category_id']);
-            $table->dropColumn('category_id');
         });
 
         Schema::dropIfExists('products');
