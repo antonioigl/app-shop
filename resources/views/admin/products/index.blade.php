@@ -18,7 +18,7 @@
 
                 <div class="team">
                     <div class="row">
-
+                        <a href="{{url('admin/products/create')}}" class="btn btn-primary btn-round">NUEVO PRODUCTO</a>
                         <table class="table">
                             <thead>
                             <tr>
@@ -53,6 +53,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        {{$products->links()}}
 
                     </div>
                 </div>
