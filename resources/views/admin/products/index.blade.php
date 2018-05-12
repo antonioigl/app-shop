@@ -43,9 +43,10 @@
                                     <form method="post" action="{{url('admin/products/'.$product->id)}}">
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
-                                        <button type="button" rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
+
+                                        <a href="" rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-info"></i>
-                                        </button>
+                                        </a>
                                         <a href="{{url('admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Edit Profile" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </a>
