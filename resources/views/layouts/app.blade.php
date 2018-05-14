@@ -38,42 +38,34 @@
                 <div class="collapse navbar-collapse" id="navigation-example">
                     <ul class="nav navbar-nav navbar-right">
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a></li>
+                            <li><a href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
+                            <li><a href="{{ route('register') }}">{{ __('Registro') }}</a></li>
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                <ul class="dropdown-menu" role="menu">
+                                    @if(auth()->user()->admin)
+                                        <li>
+                                            <a href="{{url('/admin/products')}}">{{ __('Gestionar productos') }}</a>
+                                        </li>
+                                    @endif
+                                    <li>
+                                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Desconectarse') }}
-                                    </a>
+                                            {{ __('Desconectarse') }}
+                                        </a>
+
+                                    </li>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
-                                </div>
+                                </ul>
                             </li>
                         @endguest
-                        {{--<li>--}}
-                            {{--<a href="https://twitter.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">--}}
-                                {{--<i class="fa fa-twitter"></i>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-simple btn-white btn-just-icon">--}}
-                                {{--<i class="fa fa-facebook-square"></i>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a href="https://www.instagram.com/CreativeTimOfficial" target="_blank" class="btn btn-simple btn-white btn-just-icon">--}}
-                                {{--<i class="fa fa-instagram"></i>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
                     </ul>
                 </div>
             </div>
