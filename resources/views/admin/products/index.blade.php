@@ -23,9 +23,9 @@
                             <thead>
                             <tr>
                                 <th class="text-center">#</th>
-                                <th>Nombre</th>
-                                <th class="col-md-4">Descripción</th>
-                                <th>Categoría</th>
+                                <th class="col-md-2 text-center">Nombre</th>
+                                <th class="col-md-5 text-center">Descripción</th>
+                                <th class="text-right">Categoría</th>
                                 <th class="text-right">Precio</th>
                                 <th class="text-right">Opciones</th>
                             </tr>
@@ -44,13 +44,16 @@
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
 
-                                        <a href="" rel="tooltip" title="View Profile" class="btn btn-info btn-simple btn-xs">
+                                        <a href="" rel="tooltip" title="Ver producto" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-info"></i>
                                         </a>
-                                        <a href="{{url('admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Edit Profile" class="btn btn-success btn-simple btn-xs">
+                                        <a href="{{url('admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Editar producto" class="btn btn-success btn-simple btn-xs">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <button type="submit" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
+                                        <a href="{{url('admin/products/'.$product->id.'/images')}}"  rel="tooltip" title="Imágenes del producto" class="btn btn-warning btn-simple btn-xs">
+                                            <i class="fa fa-image"></i>
+                                        </a>
+                                        <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </form>
