@@ -20,6 +20,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}', 'ProductController@show');
 
 Route::post('/cart', 'CartDetailController@store');
+Route::delete('/cart', 'CartDetailController@destroy');
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group(function () {
 
