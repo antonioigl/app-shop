@@ -48,6 +48,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+
+                                    <li>
+                                        <a href="{{url('/home')}}">Dashboard</a>
+                                    </li>
+
                                     @if(auth()->user()->admin)
                                         <li>
                                             <a href="{{url('/admin/products')}}">{{ __('Gestionar productos') }}</a>
