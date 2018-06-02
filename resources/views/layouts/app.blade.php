@@ -55,13 +55,16 @@
 
                                     @if(auth()->user()->admin)
                                         <li>
+                                            <a href="{{url('/admin/categories')}}">{{ __('Gestionar categorías') }}</a>
+                                        </li>
+                                        <li>
                                             <a href="{{url('/admin/products')}}">{{ __('Gestionar productos') }}</a>
                                         </li>
                                     @endif
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            {{ __('Desconectarse') }}
+                                            {{ __('Cerrar sesión') }}
                                         </a>
 
                                     </li>
