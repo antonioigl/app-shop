@@ -13,33 +13,22 @@
                             @csrf
                             <div class="header header-primary text-center">
                                 <h4>Inicio de sesión</h4>
-                                {{--<div class="social-line">--}}
-                                    {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
-                                        {{--<i class="fa fa-facebook-square"></i>--}}
-                                    {{--</a>--}}
-                                    {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
-                                        {{--<i class="fa fa-twitter"></i>--}}
-                                    {{--</a>--}}
-                                    {{--<a href="#" class="btn btn-simple btn-just-icon">--}}
-                                        {{--<i class="fa fa-google-plus"></i>--}}
-                                    {{--</a>--}}
-                                {{--</div>--}}
                             </div>
                             <p class="text-divider">Ingresa tus datos</p>
                             <div class="content">
 
                                 <div class="input-group">
 										<span class="input-group-addon">
-											<i class="material-icons">email</i>
+											<i class="material-icons">perm_identity</i>
 										</span>
-                                    <input id="email" type="email" placeholder="Email..." class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                                    <input id="username" type="text" placeholder="Username" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" name="username" value="{{ old('username') }}" required autofocus>
                                 </div>
 
                                 <div class="input-group">
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>
-                                    <input id="password" type="password" placeholder="Password..." class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                    <input id="password" type="password" placeholder="Contraseña" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                 </div>
 
                                  {{--If you want to add a checkbox to this form, uncomment this code--}}

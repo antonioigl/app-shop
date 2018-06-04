@@ -162,7 +162,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group label-floating">
                                         <label class="control-label">Nombre</label>
-                                        <input type="email" class="form-control">
+                                        <input type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -171,11 +171,6 @@
                                         <input type="email" class="form-control">
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="form-group label-floating">
-                                <label class="control-label">Tu mensaje</label>
-                                <textarea class="form-control" rows="4"></textarea>
                             </div>
 
                             <div class="row">
