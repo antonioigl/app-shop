@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\CartDetail;
+use App\Product;
 use Illuminate\Http\Request;
 
 class CartDetailController extends Controller
@@ -18,6 +19,10 @@ class CartDetailController extends Controller
         $cartDetail->cart_id = auth()->user()->cart->id;
         $cartDetail->product_id = $request->product_id;
         $cartDetail->quantity = $request->quantity;
+
+        $product = Product::find($request->product_id);
+        $cartDetail->price = $product->price;
+
         $cartDetail->save();
 
         $notification  = 'El producto se ha cargado a tu carrito de compras exitosamente';

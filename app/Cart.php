@@ -11,11 +11,11 @@ class Cart extends Model
         return $this->hasMany(CartDetail::class);
     }
 
-    public function getTotalAttibute()
+    public function getTotalAttribute()
     {
         $total = 0;
         foreach ($this->details as $detail) {
-            $total += $detail->quantity * $detail->product->price;
+            $total += $detail->quantity * $detail->price_detail;
         }
         return $total;
     }

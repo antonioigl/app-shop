@@ -30,8 +30,8 @@
     <ul>
         @foreach($cart->details as $detail)
         <li>
-            {{$detail->product->name}} x {{$detail->quatity}}
-            (&euro; {{$detail->quatity * $detail->product->price}})
+            {{$detail->product->name}} x {{$detail->quantity}}
+            (&euro; {{$detail->quantity * $detail->price_detail}})
         </li>
         @endforeach
     </ul>

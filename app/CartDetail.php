@@ -11,4 +11,14 @@ class CartDetail extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+    //accessor
+    public function getPriceDetailAttribute()
+    {
+        if ($this->price ==  0){
+            return $this->product->price;
+        }
+
+        return $this->price;
+    }
 }
