@@ -22,7 +22,7 @@
                         </div>
 
                         @if (session('notification'))
-                            <div class="alert alert-success">
+                            <div class="alert alert-{{ session('success')}}">
                                 {{ session('notification') }}
                             </div>
                         @endif
@@ -37,14 +37,20 @@
 
                 <div class="text-center">
                     @if(auth()->check())
-                        <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
-                            <i class="material-icons">add</i> Añadir al carrito de compras
-                        </button>
-                     @else
+                        @if(!auth()->user()->cart->details->contains('product_id', $product->id))
+                            <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
+                                <i class="material-icons">add</i> Añadir al carrito de compras
+                            </button>
+                        @else
+                            <a href="{{url('/home')}}" class="btn btn-primary btn-round">
+                                <i class="material-icons">shopping_cart</i> Ir al carrito de compras
+                            </a>
+                        @endif
+                    @else
                         <a href="{{url('/login?redirect_to='.url()->current())}}" class="btn btn-primary btn-round">
                             <i class="material-icons">add</i> Añadir al carrito de compras
                         </a>
-                     @endif
+                    @endif
                 </div>
 
                 <div class="row">

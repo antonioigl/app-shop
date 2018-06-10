@@ -16,17 +16,30 @@ class CartDetailController extends Controller
     public function store(Request $request)
     {
         $cartDetail = new CartDetail();
-        $cartDetail->cart_id = auth()->user()->cart->id;
-        $cartDetail->product_id = $request->product_id;
+
+        //check before if product is in cart
+        $cart = auth()->user()->cart;
+        $product_id = $request->product_id;
+
+        if ($cart->details->contains('product_id', $product_id)){
+            $success = 'warning';
+            $notification  = 'Este producto ya ha sido cargado anteriormente en tu carrito de compras';
+            return back()->with(compact('success', 'notification'));
+        }
+
+        //else
+        $cartDetail->cart_id = $cart->id;
+        $cartDetail->product_id = $product_id;
         $cartDetail->quantity = $request->quantity;
 
-        $product = Product::find($request->product_id);
+        $product = Product::find($product_id);
         $cartDetail->price = $product->price;
 
         $cartDetail->save();
 
+        $success = 'success';
         $notification  = 'El producto se ha cargado a tu carrito de compras exitosamente';
-        return back()->with(compact('notification'));
+        return back()->with(compact('success', 'notification'));
     }
 
     public function destroy(Request $request)
