@@ -6,6 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class CartDetail extends Model
 {
+
+    //validation
+    public static $messages = [
+        'quantity.required' => 'Es necesario ingresar la cantidad del producto a añadir al carrito de compras',
+        'quantity.numeric' => 'El valor de esta campo debe ser numérico',
+        'quantity.min' => 'Para añadir un producto al carrito debe seleccionar al menos una unidad'
+    ];
+
+    public static $rules = [
+        'quantity' => 'required|numeric|min:1'
+    ];
+
     // CartDetail N    1 Product
     public function product()
     {

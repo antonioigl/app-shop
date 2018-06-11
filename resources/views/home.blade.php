@@ -20,6 +20,16 @@
                     </div>
                 @endif
 
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <ul class="nav nav-pills nav-pills-primary" role="tablist">
                     <li class="active">
                         <a href="#dashboard" role="tab" data-toggle="tab">
@@ -76,12 +86,19 @@
                                     <i class="fa fa-info"></i>
                                 </a>
 
+                                <button type="button" rel="tooltip" title="Editar producto" class="btn btn-success btn-simple btn-xs" data-toggle="modal" data-target="#modalEditQuantityProduct{{$detail->id}}">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+
                                 <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
                                     <i class="fa fa-times"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
+
+                    </td>
+
                 @endforeach
                         </tbody>
                     </table>
@@ -100,6 +117,31 @@
             </div>
         </div>
     </div>
+
+
+    @foreach(auth()->user()->cart->details as $detail)
+        <!-- Modal Core -->
+        <div class="modal fade" id="modalEditQuantityProduct{{$detail->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">Modificar la cantidad del producto - {{$detail->product->name}}</h4>
+                    </div>
+                    <form method="post" action="{{url("/cart/{$detail->id}/edit")}}">
+                        {{csrf_field()}}
+                        <div class="modal-body">
+                            <input type="number" name="quantity" value="1" class="form-control">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
+                            <button type="submit" class="btn btn-info btn-simple">Aceptar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
 @include('includes.footer');
 

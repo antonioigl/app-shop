@@ -15,6 +15,9 @@ class CartDetailController extends Controller
 
     public function store(Request $request)
     {
+        //validation
+        $this->validate($request, CartDetail::$rules, CartDetail::$messages);
+
         $cartDetail = new CartDetail();
 
         //check before if product is in cart
@@ -40,6 +43,18 @@ class CartDetailController extends Controller
         $success = 'success';
         $notification  = 'El producto se ha cargado a tu carrito de compras exitosamente';
         return back()->with(compact('success', 'notification'));
+    }
+
+    public function update(Request $request, CartDetail $cartDetail)
+    {
+        //validation
+        $this->validate($request, CartDetail::$rules, CartDetail::$messages);
+        
+        $cartDetail->quantity = $request->input('quantity');
+        $cartDetail->save();
+
+        $notification = 'La cantidad del producto se ha modificado correctamente';
+        return back()->with(compact('notification'));
     }
 
     public function destroy(Request $request)
