@@ -14,9 +14,15 @@ class CartController extends Controller
     {
         $client = auth()->user();
         $cart = $client->cart;
+        $success = 'success';
 
+        if (!$cart->details()->count()){
+            $notification = 'El carrito está vacio. Antes de realizar el pedido debe añadir algún producto al carrito. ';
+            $success = 'danger';
+            return back()->with(compact('success','notification'));
+        }
 
-
+        //else
         $cart->status = 'Pending';
         $cart->order_date = Carbon::now();
         $cart->save(); //UPDATE
@@ -25,7 +31,8 @@ class CartController extends Controller
         Mail::to($admins)->send(new NewOrder($client, $cart));
 
         $notification = 'Tu pedido se ha registrado correctamente. Te contactaremos pronto vía mail';
-        return back()->with(compact('notification'));
+        return back()->with(compact('success','notification'));
+
     }
 
 }

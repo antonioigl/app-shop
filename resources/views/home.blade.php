@@ -15,7 +15,7 @@
                 <h2 class="title text-center">Dashboard</h2>
 
                 @if (session('notification'))
-                    <div class="alert alert-success">
+                    <div class="alert alert-{{ session('success')}}">
                         {{ session('notification') }}
                     </div>
                 @endif
@@ -109,9 +109,11 @@
                     <form method="post" action="{{url('/order')}}">
                         {{csrf_field()}}
 
-                        <button class="btn btn-primary btn-round">
-                            <i class="material-icons">done</i> Realizar pedido
-                        </button>
+                        @if(auth()->user()->cart->details()->count())
+                            <button class="btn btn-primary btn-round">
+                                <i class="material-icons">done</i> Realizar pedido
+                            </button>
+                        @endif
                     </form>
                 </div>
             </div>
@@ -131,7 +133,7 @@
                     <form method="post" action="{{url("/cart/{$detail->id}/edit")}}">
                         {{csrf_field()}}
                         <div class="modal-body">
-                            <input type="number" name="quantity" value="1" class="form-control">
+                            <input type="number" name="quantity" value="{{$detail->quantity}}" class="form-control">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default btn-simple" data-dismiss="modal">Cancelar</button>
