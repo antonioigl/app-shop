@@ -43,4 +43,9 @@ class Product extends Model
 
         return 'General';
     }
+
+    public function isEnoughStock($quantity)
+    {
+        return $this->stock >= $quantity;
+    }
 }

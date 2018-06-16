@@ -46,8 +46,8 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group label-floating">
-                                <label class="control-label">Descripción corta del producto</label>
-                                <input type="text" class="form-control" name="description" value="{{old('description')}}">
+                                <label class="control-label">Stock del producto</label>
+                                <input type="number" class="form-control" name="stock" value="{{old('stock')}}">
                             </div>
                         </div>
 
@@ -64,9 +64,16 @@
                         </div>
                     </div>
 
-                    <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description">
-                    {{old('description')}}
-                    </textarea>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group label-floating">
+                                <label class="control-label">Descripción corta del producto</label>
+                                <input type="text" class="form-control" name="description" value="{{old('description')}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description">{{old('description')}}</textarea>
 
                     <button type="submit" class="btn btn-primary">Registrar producto</button>
                     <a href="{{url('admin/products')}}" class="btn btn-default">Cancelar</a>

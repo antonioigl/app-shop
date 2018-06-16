@@ -32,12 +32,16 @@ class ProductController extends Controller
             'price.required' => 'Es obligatorio definir un precio para el producto',
             'price.numeric' => 'Ingrese un precio valido',
             'price.min' => 'No se adminten valores negativos',
+            'stock.required' => 'Es obligatorio definir un stock para el producto',
+            'stock.numeric' => 'Ingrese un stock valido',
+            'stock.min' => 'No se adminten valores negativos'
         ];
 
         $rules = [
             'name' => 'required|min:3',
             'description' => 'required|max:200',
-            'price' => 'required|numeric|min:0'
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|numeric|min:0'
         ];
 
         $this->validate($request, $rules, $messages);
@@ -47,6 +51,7 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
         $product->long_description = $request->input('long_description');
         $product->category_id = $request->input('category_id');
         $product->save(); //INSERT
@@ -62,6 +67,12 @@ class ProductController extends Controller
         return view('admin.products.edit')->with(compact('product', 'categories')); //formulario de edición
     }
 
+    public function editStock($id)
+    {
+        $product = Product::find($id);
+        return view('admin.products.edit')->with(compact('product')); //formulario de edición
+    }
+
     public function update(Request $request, $id)
     {
 
@@ -74,12 +85,16 @@ class ProductController extends Controller
             'price.required' => 'Es obligatorio definir un precio para el producto',
             'price.numeric' => 'Ingrese un precio valido',
             'price.min' => 'No se adminten valores negativos',
+            'stock.required' => 'Es obligatorio definir un stock para el producto',
+            'stock.numeric' => 'Ingrese un stock valido',
+            'stock.min' => 'El stock del producto debe tener al menos 1 unidad'
         ];
 
         $rules = [
             'name' => 'required|min:3',
             'description' => 'required|max:200',
-            'price' => 'required|numeric|min:0'
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|numeric|min:3'
         ];
 
         $this->validate($request, $rules, $messages);
@@ -89,12 +104,37 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->price = $request->input('price');
+        $product->stock = $request->input('stock');
         $product->long_description = $request->input('long_description');
         $product->category_id = $request->input('category_id');
         $product->save(); // UPDATE
 
         return redirect('/admin/products');
     }
+
+    public function updateStock(Product $product, Request $request)
+    {
+
+        //validation
+        $messages = [
+            'stock.required' => 'Es necesario ingresar un nombre para el producto',
+            'stock.numeric' => 'El nombre del producto debe tener al menos 3 caracteres',
+            'stock.min' => 'No se adminten valores negativos',
+        ];
+
+        $rules = [
+            'stock' => 'required|numeric|min:1'
+        ];
+
+        $this->validate($request, $rules, $messages);
+
+        //actalizar producto en la bd
+        $product->stock = $request->input('stock');
+        $product->save(); // UPDATE
+
+        return redirect('/admin/products');
+    }
+
 
     public function destroy($id)
     {

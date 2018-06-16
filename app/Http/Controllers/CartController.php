@@ -14,6 +14,9 @@ class CartController extends Controller
     {
         $client = auth()->user();
         $cart = $client->cart;
+
+
+
         $cart->status = 'Pending';
         $cart->order_date = Carbon::now();
         $cart->save(); //UPDATE

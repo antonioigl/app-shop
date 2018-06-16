@@ -12,7 +12,12 @@
         <div class="container">
 
             <div class="section">
-                <h2 class="title text-center">Editar producto seleccionado</h2>
+                @if(isset($categories))
+                    <h2 class="title text-center">Editar producto seleccionado</h2>
+                @else
+                    <h2 class="title text-center">Editar stock de producto seleccionado</h2>
+                    <h3 class="title text-center">{{$product->id}} - {{$product->name}}</h3>
+                @endif
 
                 @if($errors->any())
                     <div class="alert alert-danger">
@@ -25,7 +30,10 @@
                 @endif
                
                 <form method="post" action="{{url('/admin/products/'.$product->id.'/edit')}}">
+                    {{ method_field('PUT') }}
                     {{csrf_field()}}
+
+                    @if(isset($categories))
 
                     <div class="row">
                         <div class="col-sm-6">
@@ -69,6 +77,26 @@
                     <textarea class="form-control" placeholder="Descripción extensa del producto" rows="5" name="long_description">
                         {{old('long_description', $product->long_description)}}
                     </textarea>
+
+                    @else
+
+                        <p>El stock actual del producto <strong>({{$product->id}} - {{$product->name}})</strong> es de: <strong>{{$product->stock}} unidades</strong></p>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Stock del producto</label>
+                                    <input type="text" class="form-control" name="stock" value="{{old('stock', $product->stock)}}">
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="name" value="{{ $product->name}}">
+                        <input type="hidden" name="price" value="{{ $product->price}}">
+                        <input type="hidden" name="description" value="{{ $product->description}}">
+                        <input type="hidden" name="category_id" value="{{ $product->category_id}}">
+                        <input type="hidden" name="long_description" value="{{ $product->long_description}}">
+
+                    @endif
 
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
                     <a href="{{url('admin/products')}}" class="btn btn-default">Cancelar</a>

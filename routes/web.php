@@ -35,7 +35,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
     Route::get('/products/create', 'ProductController@create'); //formulario
     Route::post('/products', 'ProductController@store'); //registrar
     Route::get('/products/{id}/edit', 'ProductController@edit'); //formulario editar
-    Route::post('/products/{id}/edit', 'ProductController@update'); //actualizar
+    Route::get('/products/{id}/edit-stock', 'ProductController@editStock'); //formulario editar stock
+    Route::put('/products/{id}/edit', 'ProductController@update'); //actualizar
     Route::delete('/products/{id}', 'ProductController@destroy'); //form eliminar
 
     Route::get('/products/{id}/images', 'ImageController@index'); //listado
