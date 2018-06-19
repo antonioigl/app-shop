@@ -31,7 +31,7 @@
 										<span class="input-group-addon">
 											<i class="material-icons">face</i>
 										</span>
-                                    <input type="text" class="form-control" placeholder="Nombre" name="name" value="{{ old('name') }}" required autofocus>
+                                    <input type="text" class="form-control" placeholder="Nombre" name="name" value="{{old('name') ? old('name')  : $name }}" required autofocus>
                                 </div>
 
                                 <div class="input-group">
@@ -45,7 +45,7 @@
 										<span class="input-group-addon">
 											<i class="material-icons">email</i>
 										</span>
-                                    <input id="email" type="email" placeholder="Correo electrónico" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" autofocus>
+                                    <input id="email" type="email" placeholder="Correo electrónico" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') ?  old('email') : $email }}" required autofocus>
                                 </div>
 
                                 <div class="input-group">
