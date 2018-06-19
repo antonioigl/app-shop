@@ -33,4 +33,9 @@ class CartDetail extends Model
 
         return $this->price;
     }
+
+    public function isEnoughStock()
+    {
+        return $this->quantity <= $this->product->stock;
+    }
 }

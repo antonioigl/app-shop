@@ -19,4 +19,25 @@ class Cart extends Model
         }
         return $total;
     }
+
+    public function isEmpty()
+    {
+        if ($this->details()->count()){
+            return false;
+        }
+        //else
+        return true;
+    }
+
+    public function inStock()
+    {
+        foreach ($this->details as $detail) {
+            if(!$detail->isEnoughStock()){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
 }

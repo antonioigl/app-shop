@@ -62,9 +62,9 @@
                         </thead>
                     <tbody>
 
-                @foreach(auth()->user()->cart->details as $detail)
+                @foreach(auth()->user()->cart->details as $key => $detail)
 
-                    <tr>
+                    <tr class="{{ session('availableStock') && array_key_exists($key, session('availableStock') ) ? 'alert alert-danger' : ''}}">
                         <td class="text-center">
                             <img src="{{$detail->product->featured_image_url}}" height="50">
                         </td>
@@ -73,7 +73,7 @@
                         </td>
 
                         <td>&euro; {{$detail->price_detail}}</td>
-                        <td>{{$detail->quantity}}</td>
+                        <td class="{{ session('availableStock') && array_key_exists($key, session('availableStock') ) ? 'alert alert-danger' : ''}}"> {{$detail->quantity}} {{ session('availableStock') && array_key_exists($key, session('availableStock') ) ? '(Disponible '. session('availableStock')[$key] . ' en stock)': ''}}</td>
                         <td>&euro; {{$detail->quantity * $detail->price_detail}}</td>
                         <td>
                             <form method="post" action="{{url('/cart')}}">
