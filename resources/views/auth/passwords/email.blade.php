@@ -17,6 +17,13 @@
                             </ul>
                         </div>
                     @endif
+
+                    @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
                     <div class="card card-signup">
                         <form method="POST" action="{{ route('password.email') }}">
                             @csrf
@@ -37,10 +44,9 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="footer text-center">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Enviar enlace restablecer contraseña') }}
-                                </button>
+                                <button type="submit" class="btn btn-simple btn-primary btn-lg">Enviar enlace restablecer contraseña</button>
                             </div>
 
                         </form>
