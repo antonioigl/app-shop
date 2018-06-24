@@ -1,45 +1,39 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Nuevo pedido</title>
-</head>
-<body>
+@component('mail::message')
 
-    <p>Se ha realizado un nuevo pedido!</p>
-    <p>Estos son los datos del cliente que realizó el pedido:</p>
+# Nuevo pedido
 
-    <ul>
-        <li>
-            <strong>Nombre:</strong>
-            {{$user->name}}
-        </li>
-        <li>
-            <strong>E-mail:</strong>
-            {{$user->email}}
-        </li>
-        <li>
-            <strong>Fecha del pedido:</strong>
-            {{$cart->order_date}}
-        </li>
-    </ul>
+¡Se ha realizado un nuevo pedido!
 
+@component('mail::panel')
 
+Estos son los **datos del cliente** que realizó el pedido:
 
-    <p>Y estos son los detalles del pedido:</p>
++ **Nombre:** {!! $user->name !!}
++ **E-mail:**  {{$user->email}}
++ **Fecha del pedido:**  {{$cart->order_date}}
 
-    <ul>
-        @foreach($cart->details as $detail)
-        <li>
-            {{$detail->product->name}} x {{$detail->quantity}}
-            (&euro; {{$detail->quantity * $detail->price_detail}})
-        </li>
-        @endforeach
-    </ul>
-    <p>
-        <stong>Importe que el cliente debe pagar:</stong> {{$cart->total}}
-    </p>
-    <p>
-        <a href="{{url('/admin/order/'.$cart->id)}}">Haz click aquí</a> para ver más información sobre este pedido.
-    </p>
-</body>
-</html> 
+@endcomponent
+
+@component('mail::panel')
+
+Y estos son los **detalles del pedido**:
+
+@foreach ($cart->details as $detail)
++ {{$detail->product->name}} x {{$detail->quantity}} (&euro; {{$detail->quantity * $detail->price_detail}})
+@endforeach
+
+@endcomponent
+
+**Importe que el cliente debe pagar:** {{$cart->total}}
+
+@component('mail::button', [ 'url' => url('admin/order/'.$cart->id) ])
+Ver pedido
+@endcomponent
+
+ {{--Footer --}}
+@slot('footer')
+    @component('mail::footer')
+        © {{ date('Y') }} {{ config('app.name') }}. Todos los derechos reservados.
+    @endcomponent
+@endslot
+@endcomponent
