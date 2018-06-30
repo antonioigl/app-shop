@@ -65,9 +65,10 @@
                                 <div class="team-player">
                                     <img src="{{$product->featured_image_url}}" alt="Thumbnail Image" class="img-raised img-circle">
                                     <h4 class="title">
-                                        <a href="{{url('products/'.$product->id)}}">{{$product->name}}</a>
+                                        <a href="{{url('products/'.$product->id)}}">{{$product->name}} </a>
                                     </h4>
-                                    <p class="description">{{$product->description}}</p>
+                                    <p class="description"> {{$product->description}}</p>
+                                    <h4> {{$product->price}} &euro;</h4>
                                     {{--<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>--}}
                                     {{--<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>--}}
                                     {{--<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>--}}

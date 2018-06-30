@@ -45,6 +45,10 @@
                     </p>
                 </div>
 
+                <div class="price text-center">
+                    <h3 class="title">{{$product->price}} &euro;</h3>
+                </div>
+
                 <div class="text-center">
                     @if(auth()->check())
                         @if(!auth()->user()->cart->details->contains('product_id', $product->id))
