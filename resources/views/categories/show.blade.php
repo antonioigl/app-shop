@@ -5,13 +5,12 @@
 
 @section('styles')
     <style>
-        .team{
+        .team {
             padding-bottom: 50px;
         }
-        .tem .row .col-md-4 {
+        .team .row .col-md-4 {
             margin-bottom: 5em;
         }
-
         .team .row {
             display: -webkit-box;
             display: -webkit-flex;
@@ -22,6 +21,12 @@
         .team .row > [class*='col-'] {
             display: flex;
             flex-direction: column;
+        }
+        .no-margin {
+            margin: 0;
+        }
+        .team .team-player .title {
+            margin-bottom: 0.5em;
         }
     </style>
 @endsection
@@ -68,10 +73,7 @@
                                         <a href="{{url('products/'.$product->id)}}">{{$product->name}} </a>
                                     </h4>
                                     <p class="description"> {{$product->description}}</p>
-                                    <h4> {{$product->price}} &euro;</h4>
-                                    {{--<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-twitter"></i></a>--}}
-                                    {{--<a href="#pablo" class="btn btn-simple btn-just-icon"><i class="fa fa-instagram"></i></a>--}}
-                                    {{--<a href="#pablo" class="btn btn-simple btn-just-icon btn-default"><i class="fa fa-facebook-square"></i></a>--}}
+                                    <h4 class="title"> {{$product->price}} &euro;</h4>
                                 </div>
                             </div>
                         @endforeach
