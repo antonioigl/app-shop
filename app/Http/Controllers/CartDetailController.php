@@ -49,9 +49,12 @@ class CartDetailController extends Controller
     {
         //validation
         $this->validate($request, CartDetail::$rules, CartDetail::$messages);
-        
-        $cartDetail->quantity = $request->input('quantity');
-        $cartDetail->save();
+
+        //edita el detalle del carrito del usuario logueado (para evitar peticiones de borrado de usuarios maliciosos)
+        if ($cartDetail->cart_id == auth()->user()->cart->id) {
+            $cartDetail->quantity = $request->input('quantity');
+            $cartDetail->save();
+        }
 
         $notification = 'La cantidad del producto se ha modificado correctamente';
         return back()->with(compact('notification'));

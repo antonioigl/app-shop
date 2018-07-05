@@ -18,7 +18,8 @@ Auth::routes();
 Route::get('/search', 'SearchController@show');
 Route::get('/products/json', 'SearchController@data');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@cart')->name('home');
+Route::get('/orders', 'HomeController@orders')->name('orders');
 
 Route::get('/products/{id}', 'ProductController@show');
 Route::get('/categories/{category}', 'CategoryController@show');

@@ -21,8 +21,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function cart()
     {
-        return view('home');
+        return view('home.home');
+    }
+
+    public function orders()
+    {
+
+        return view('home.orders');
     }
 }

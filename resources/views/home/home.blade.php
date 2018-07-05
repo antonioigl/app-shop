@@ -32,14 +32,14 @@
 
                 <ul class="nav nav-pills nav-pills-primary" role="tablist">
                     <li class="active">
-                        <a href="#dashboard" role="tab" data-toggle="tab">
+                        <a href="{{url('home/')}}" role="tab" data-toggle="tab">
                             <i class="material-icons">dashboard</i>
                             Carrito de compras
                         </a>
                     </li>
 
                     <li>
-                        <a href="#tasks" role="tab" data-toggle="tab">
+                        <a href="{{url('orders/')}}">
                             <i class="material-icons">list</i>
                             Pedidos realizados
                         </a>
@@ -68,7 +68,7 @@
                         <td class="text-center">
                             <img src="{{$detail->product->featured_image_url}}" height="50">
                         </td>
-                        <td>
+                        <td class="text-center">
                             <a href="{{url('/products/'. $detail->product->id)}}"  target="_blank">{{$detail->product->name}}</a>
                         </td>
 

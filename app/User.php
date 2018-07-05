@@ -49,6 +49,12 @@ class User extends Authenticatable
         return $cart;
     }
 
+    public function orders()
+    {
+        return $this->carts()->where('status', '!=','Active')->get();
+
+    }
+
     /**
      * Send the password reset notification.
      *
