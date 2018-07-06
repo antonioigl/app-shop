@@ -44,7 +44,7 @@
                                         {{csrf_field()}}
                                         {{method_field('DELETE')}}
 
-                                        <a href="" rel="tooltip" title="Ver categoría" class="btn btn-info btn-simple btn-xs">
+                                        <a href="{{url('categories/'.$category->id)}}" rel="tooltip" title="Ver categoría" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-info"></i>
                                         </a>
                                         <a href="{{url('admin/categories/'.$category->id.'/edit')}}" rel="tooltip" title="Editar categoría" class="btn btn-success btn-simple btn-xs">
