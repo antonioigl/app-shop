@@ -60,6 +60,9 @@
                                         <li>
                                             <a href="{{url('/admin/products')}}">{{ __('Gestionar productos') }}</a>
                                         </li>
+                                        <li>
+                                            <a href="{{url('/admin/orders')}}">{{ __('Gestionar pedidos') }}</a>
+                                        </li>
                                     @endif
                                     <li>
                                         <a href="{{ route('logout') }}" onclick="event.preventDefault();

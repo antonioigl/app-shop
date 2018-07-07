@@ -11,6 +11,11 @@ class Cart extends Model
         return $this->hasMany(CartDetail::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getTotalAttribute()
     {
         $total = 0;

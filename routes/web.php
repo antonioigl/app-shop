@@ -52,4 +52,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
     Route::post('/categories/{category}/edit', 'CategoryController@update'); //actualizar
     Route::delete('/categories/{category}', 'CategoryController@destroy'); //form eliminar
 
+    Route::get('/orders', 'OrderController@index'); //listado
+    Route::get('/orders/{order}', 'OrderController@show');
+
 });

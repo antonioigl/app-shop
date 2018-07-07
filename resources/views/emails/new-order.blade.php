@@ -26,7 +26,7 @@ Y estos son los **detalles del pedido**:
 
 **Importe que el cliente debe pagar:** {{$cart->total}}
 
-@component('mail::button', [ 'url' => url('admin/order/'.$cart->id) ])
+@component('mail::button', [ 'url' => url('admin/orders/'.$cart->id) ])
 Ver pedido
 @endcomponent
 
