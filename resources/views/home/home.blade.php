@@ -33,15 +33,15 @@
                 <ul class="nav nav-pills nav-pills-primary" role="tablist">
                     <li class="active">
                         <a href="{{url('home/')}}" role="tab" data-toggle="tab">
-                            <i class="material-icons">dashboard</i>
+                            <i class="material-icons">shopping_cart</i>
                             Carrito de compras
                         </a>
                     </li>
 
                     <li>
                         <a href="{{url('orders/')}}">
-                            <i class="material-icons">list</i>
-                            Pedidos realizados
+                            <i class="material-icons">list_alt</i>
+                            Mis pedidos
                         </a>
                     </li>
                 </ul>
