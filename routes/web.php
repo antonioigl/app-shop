@@ -54,5 +54,6 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->group
 
     Route::get('/orders', 'OrderController@index'); //listado
     Route::get('/orders/{order}', 'OrderController@show');
+    Route::get('/orders/{order}/edit', 'OrderController@edit');
 
 });

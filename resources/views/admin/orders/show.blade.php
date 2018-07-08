@@ -13,48 +13,80 @@
 
             <div class="section">
                 <h2 class="title text-center">Detalles del pedido {{$order->id}}</h2>
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">Datos del cliente</div>
-                    <div class="panel-body">
-                        <ul>
-                            <li>Nombre: {{$order->user->name}}</li>
-                            <li>Email: {{$order->user->email}}</li>
-                            <li>Teléfono: {{$order->user->phone}}</li>
-                            <li>Dirección: {{$order->user->address}}</li>
-                        </ul>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a href="{{url("admin/orders/{$order->id}/edit")}}" class="btn btn-primary btn-round">Tramitar pedido</a>
                     </div>
                 </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Datos del cliente</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Nombre: {{$order->user->name}}</li>
+                                    <li>Email: {{$order->user->email}}</li>
+                                    <li>Teléfono: {{!is_null($order->user->phone) ? $order->user->phone : '-'}}</li>
+                                    <li>Dirección: {{!is_null($order->user->address) ? $order->user->address : '-'}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Datos del pedido</div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Fecha del pedido: {{$order->order_date}}</li>
+                                    <li>Fecha del pedido: {{!is_null($order->arrived_date) ? $order->user->phone : '-'}}</li>
+                                    <li>Estado: {{$order->status}}</li>
+                                    <li>Importe total: {{$order->total}} &euro;</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <hr>
                 <p>Este pedido presenta {{$details->count()}} productos</p>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th class="text-center">#</th>
-                            <th class="text-center">Nombre</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Subtotal</th>
-                        </tr>
-                        </thead>
-                    <tbody>
-                        @foreach($details as $detail)
+                <div class="panel panel-default">
+                    <div class="panel-heading">Productos del pedido</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td class="text-center">
-                                    <img src="{{$detail->product->featured_image_url}}" height="50">
-                                </td>
-                                <td class="text-center">
-                                    <a href="{{url('/products/'. $detail->product->id)}}"  target="_blank">{{$detail->product->name}}</a>
-                                </td>
-                                <td>&euro; {{$detail->price_detail}}</td>
-                                <td> {{$detail->quantity}}</td>
-                                <td>&euro; {{$detail->quantity * $detail->price_detail}}</td>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                <p><strong>Importe total:</strong> {{$order->total}} &euro;</p>
+                            </thead>
+                            <tbody>
+                            @foreach($details as $detail)
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="{{$detail->product->featured_image_url}}" height="50">
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="{{url('/products/'. $detail->product->id)}}"  target="_blank">{{$detail->product->name}}</a>
+                                    </td>
+                                    <td>&euro; {{$detail->price_detail}}</td>
+                                    <td> {{$detail->quantity}}</td>
+                                    <td>&euro; {{$detail->quantity * $detail->price_detail}}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                        <p><strong>Importe total:</strong> {{$order->total}} &euro;</p>
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
